@@ -1,0 +1,45 @@
+import javax.swing.JFrame;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
+import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class GUIProgram extends JFrame {
+
+    private JButton button;
+    private JTextField textField;
+    private JLabel label;
+
+    public GUIProgram() {
+        super("Exemplo de Programa GUI");
+
+        setLayout(new FlowLayout());
+
+        button = new JButton("Mostrar");
+        textField = new JTextField(15); 
+        label = new JLabel("Texto aqui");
+
+        add(textField);
+        add(button);
+        add(label);
+
+        ButtonHandler handler = new ButtonHandler();
+        button.addActionListener(handler);
+    }
+
+    private class ButtonHandler implements ActionListener {
+        public void actionPerformed(ActionEvent event) {
+            String texto = textField.getText(); 
+            label.setText(texto); 
+        }
+    }
+
+    public static void main(String[] args) {
+        GUIProgram programa = new GUIProgram();
+        programa.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        programa.setSize(300, 150);
+        programa.setVisible(true);
+    }
+}
